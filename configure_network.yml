@@ -1,0 +1,23 @@
+---
+- name: Configure Router 1 and Router 2
+  hosts: routers
+  gather_facts: no
+  tasks:
+    - name: Set hostname on router1
+      cisco.ios.ios_config:
+        authorize: yes
+        lines:
+          - hostname Router1
+          - interface fa0/0
+          - ip address 192.168.1.1 255.255.255.0
+          - no shutdown
+
+    - name: Set hostname on router2
+      cisco.ios.ios_config:
+        authorize: yes
+        lines:
+          - hostname Router2
+          - interface fa0/0
+          - ip address 192.168.1.2 255.255.255.0
+          - no shutdown
+
